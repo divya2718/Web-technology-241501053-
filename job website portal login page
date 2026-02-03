@@ -1,0 +1,114 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Job Portal Login</title>
+  <style>
+    body {
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background: radial-gradient(circle at top left, #ffe6e6, #fff0b3, #ccf2ff, #e6ccff);
+      background-size: 400% 400%;
+      animation: glitter 12s ease infinite;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    @keyframes glitter {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .login-container {
+      background: rgba(255, 255, 255, 0.95);
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+      width: 380px;
+      border-top: 6px solid #66b3ff; /* soft blue accent */
+    }
+    .login-container h2 {
+      text-align: center;
+      margin-bottom: 25px;
+      color: #333;
+      font-weight: bold;
+    }
+    .login-container input {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 14px;
+    }
+    .login-container button {
+      width: 100%;
+      padding: 12px;
+      background: #66b3ff; /* pastel blue button */
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+    .login-container button:hover {
+      background: #3399ff;
+    }
+    .error {
+      color: red;
+      font-size: 0.9em;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="login-container">
+    <h2>Job Portal Login</h2>
+    <form id="loginForm">
+      <input type="text" id="username" placeholder="Username" required>
+      <input type="password" id="password" placeholder="Password" required>
+      <input type="text" id="lastname" placeholder="Last Name" required>
+      <input type="email" id="email" placeholder="Email ID" required>
+      <input type="tel" id="phone" placeholder="Phone Number" required>
+      <input type="text" id="address" placeholder="Address" required>
+      <button type="submit">Login</button>
+      <p class="error" id="errorMsg"></p>
+    </form>
+  </div>
+
+  <script>
+    const loginForm = document.getElementById("loginForm");
+    const errorMsg = document.getElementById("errorMsg");
+
+    loginForm.addEventListener("submit", function(event) {
+      event.preventDefault();
+
+      const username = document.getElementById("username").value.trim();
+      const password = document.getElementById("password").value.trim();
+      const lastname = document.getElementById("lastname").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const phone = document.getElementById("phone").value.trim();
+      const address = document.getElementById("address").value.trim();
+
+      if (!username || !password || !lastname || !email || !phone || !address) {
+        errorMsg.textContent = "All fields are required.";
+        return;
+      }
+
+      // Example validation (replace with backend authentication)
+      if (username === "admin" && password === "1234") {
+        alert("Login successful! Redirecting...");
+        window.location.href = "dashboard.html";
+      } else {
+        errorMsg.textContent = "Invalid credentials. Please try again.";
+      }
+    });
+  </script>
+</body>
+</html>
