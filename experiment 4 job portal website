@@ -1,0 +1,151 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Job Portal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin:0; padding:0; box-sizing:border-box; font-family:'Poppins',sans-serif; }
+
+        body {
+            height: 100vh;
+            background: url('https://images.unsplash.com/photo-1521737604893-d14cc237f11d') no-repeat center center/cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        body::before {
+            content:"";
+            position:absolute;
+            width:100%; height:100%;
+            background: rgba(0,0,0,0.6);
+            z-index:0;
+        }
+
+        .container {
+            position: relative;
+            z-index: 1;
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(12px);
+            padding: 40px;
+            border-radius: 15px;
+            width: 400px;
+            color: white;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+            text-align: center;
+        }
+
+        h2,h3,h4 { margin-bottom: 20px; }
+
+        input { width: 100%; padding: 12px; margin:10px 0; border-radius:8px; border:none; outline:none; }
+
+        button {
+            width: 100%; padding: 12px; border:none; border-radius:8px; font-weight:bold; cursor:pointer;
+            background: linear-gradient(90deg, #00c6ff, #0072ff); color:white; transition:0.3s;
+        }
+
+        button:hover { transform: scale(1.05); background: linear-gradient(90deg, #ff512f, #dd2476); }
+
+        .job-card {
+            background: rgba(255,255,255,0.1);
+            margin: 15px auto;
+            padding: 20px;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        .job-card:hover {
+            background: rgba(255,255,255,0.2);
+        }
+
+        .back-btn {
+            background: gray; margin-top:15px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- PAGE 1: User Form -->
+    <div class="container" id="page1">
+        <h2>💼 Job Portal Registration</h2>
+        <input type="text" id="name" placeholder="Enter Name" required>
+        <input type="number" id="age" placeholder="Enter Age" required>
+        <button onclick="goToJobs()">Next</button>
+    </div>
+
+    <!-- PAGE 2: Job List -->
+    <div class="container" id="page2" style="display:none;">
+        <h2>Welcome <span id="userName"></span>! 👋</h2>
+        <h3>Available Jobs</h3>
+
+        <div class="job-card" onclick="goToJobDetail('Software Developer','Tech Solutions','Bangalore','₹6 LPA','Java, SQL, HTML')">
+            <h4>Software Developer</h4>
+            <p>Company: Tech Solutions</p>
+        </div>
+
+        <div class="job-card" onclick="goToJobDetail('Web Designer','Creative Minds','Hyderabad','₹4 LPA','HTML, CSS, JS')">
+            <h4>Web Designer</h4>
+            <p>Company: Creative Minds</p>
+        </div>
+
+        <div class="job-card" onclick="goToJobDetail('Data Analyst','Data Corp','Chennai','₹5 LPA','Python, SQL, Excel')">
+            <h4>Data Analyst</h4>
+            <p>Company: Data Corp</p>
+        </div>
+
+        <button class="back-btn" onclick="backToForm()">Back</button>
+    </div>
+
+    <!-- PAGE 3: Job Detail -->
+    <div class="container" id="page3" style="display:none;">
+        <h2 id="jobTitle"></h2>
+        <p><b>Company:</b> <span id="jobCompany"></span></p>
+        <p><b>Location:</b> <span id="jobLocation"></span></p>
+        <p><b>Salary:</b> <span id="jobSalary"></span></p>
+        <p><b>Skills Required:</b> <span id="jobSkills"></span></p>
+        <button onclick="applyJob()">Apply Now</button>
+        <button class="back-btn" onclick="backToJobs()">Back</button>
+    </div>
+
+    <script>
+        function goToJobs(){
+            var name = document.getElementById("name").value;
+            var age = document.getElementById("age").value;
+            if(name === "" || age === "") {
+                alert("Please enter Name and Age!");
+                return;
+            }
+            document.getElementById("page1").style.display = "none";
+            document.getElementById("page2").style.display = "block";
+            document.getElementById("userName").innerText = name;
+        }
+
+        function goToJobDetail(title, company, location, salary, skills){
+            document.getElementById("page2").style.display = "none";
+            document.getElementById("page3").style.display = "block";
+            document.getElementById("jobTitle").innerText = title;
+            document.getElementById("jobCompany").innerText = company;
+            document.getElementById("jobLocation").innerText = location;
+            document.getElementById("jobSalary").innerText = salary;
+            document.getElementById("jobSkills").innerText = skills;
+        }
+
+        function backToForm(){
+            document.getElementById("page2").style.display = "none";
+            document.getElementById("page1").style.display = "block";
+        }
+
+        function backToJobs(){
+            document.getElementById("page3").style.display = "none";
+            document.getElementById("page2").style.display = "block";
+        }
+
+        function applyJob(){
+            alert("Application submitted! 🚀");
+        }
+    </script>
+
+</body>
+</html>
