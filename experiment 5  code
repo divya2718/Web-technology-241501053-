@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Creative GET vs POST Demo</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        body {
+            height: 100vh;
+            display: flex;
+            background: #0f2027;
+            background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+        }
+
+        .half {
+            width: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            color: white;
+            padding: 40px;
+            transition: 0.4s;
+        }
+
+        .get-side {
+            background: rgba(255, 0, 150, 0.1);
+            backdrop-filter: blur(10px);
+            border-right: 2px solid rgba(255,255,255,0.2);
+        }
+
+        .post-side {
+            background: rgba(0, 255, 200, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            text-shadow: 0 0 15px rgba(255,255,255,0.6);
+        }
+
+        form {
+            width: 80%;
+            text-align: center;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            margin: 12px 0;
+            border: none;
+            border-radius: 30px;
+            outline: none;
+        }
+
+        .btn-get {
+            background: #ff0080;
+            color: white;
+            cursor: pointer;
+            box-shadow: 0 0 15px #ff0080;
+            transition: 0.3s;
+        }
+
+        .btn-get:hover {
+            background: white;
+            color: #ff0080;
+            box-shadow: 0 0 25px #ff0080;
+        }
+
+        .btn-post {
+            background: #00ffc3;
+            color: black;
+            cursor: pointer;
+            box-shadow: 0 0 15px #00ffc3;
+            transition: 0.3s;
+        }
+
+        .btn-post:hover {
+            background: black;
+            color: #00ffc3;
+            box-shadow: 0 0 25px #00ffc3;
+        }
+
+        .info {
+            margin-top: 15px;
+            font-size: 14px;
+            opacity: 0.8;
+        }
+
+        .get-side:hover {
+            background: rgba(255, 0, 150, 0.2);
+        }
+
+        .post-side:hover {
+            background: rgba(0, 255, 200, 0.2);
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- GET SIDE -->
+    <div class="half get-side">
+        <h1>🔥 GET Method</h1>
+        <form method="get" action="GetPostDemoServlet">
+            <input type="text" name="username" placeholder="Enter Name">
+            <input type="password" name="password" placeholder="Enter Password">
+            <input type="submit" value="Submit with GET" class="btn-get">
+        </form>
+        <div class="info">
+            ✔ Data visible in URL<br>
+            ✔ Fast & Bookmarkable<br>
+            ❌ Not secure for passwords
+        </div>
+    </div>
+
+    <!-- POST SIDE -->
+    <div class="half post-side">
+        <h1>🚀 POST Method</h1>
+        <form method="post" action="GetPostDemoServlet">
+            <input type="text" name="username" placeholder="Enter Name">
+            <input type="password" name="password" placeholder="Enter Password">
+            <input type="submit" value="Submit with POST" class="btn-post">
+        </form>
+        <div class="info">
+            ✔ Data hidden in body<br>
+            ✔ More secure<br>
+            ✔ Used for login & registration
+        </div>
+    </div>
+
+</body>
+</html>
