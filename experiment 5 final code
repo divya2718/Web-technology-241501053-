@@ -1,0 +1,65 @@
+import java.io.*;
+import javax.servlet.*;
+import javax.servlet.http.*;
+import javax.servlet.annotation.WebServlet;
+
+@WebServlet("/GetPostDemo")
+public class GetPostDemo extends HttpServlet {
+
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        response.setContentType("text/html");
+        PrintWriter out = response.getWriter();
+
+        // If form not submitted, display form
+        if (request.getParameter("username") == null) {
+
+            out.println("<html><body>");
+            out.println("<h2>HTTP GET vs POST Demo</h2>");
+
+            // GET Form
+            out.println("<h3>Submit Using GET</h3>");
+            out.println("<form method='get' action='GetPostDemo'>");
+            out.println("Username: <input type='text' name='username'><br><br>");
+            out.println("Password: <input type='password' name='password'><br><br>");
+            out.println("<input type='submit' value='Submit via GET'>");
+            out.println("</form>");
+
+            out.println("<hr>");
+
+            // POST Form
+            out.println("<h3>Submit Using POST</h3>");
+            out.println("<form method='post' action='GetPostDemo'>");
+            out.println("Username: <input type='text' name='username'><br><br>");
+            out.println("Password: <input type='password' name='password'><br><br>");
+            out.println("<input type='submit' value='Submit via POST'>");
+            out.println("</form>");
+
+            out.println("</body></html>");
+        }
+        else {
+            // If GET request with parameters
+            out.println("<html><body>");
+            out.println("<h2>Data Received via GET Method</h2>");
+            out.println("Username: " + request.getParameter("username") + "<br>");
+            out.println("Password: " + request.getParameter("password") + "<br><br>");
+            out.println("<b>Note:</b> Data is visible in the URL.");
+            out.println("</body></html>");
+        }
+    }
+
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        response.setContentType("text/html");
+        PrintWriter out = response.getWriter();
+
+        out.println("<html><body>");
+        out.println("<h2>Data Received via POST Method</h2>");
+        out.println("Username: " + request.getParameter("username") + "<br>");
+        out.println("Password: " + request.getParameter("password") + "<br><br>");
+        out.println("<b>Note:</b> Data is NOT visible in the URL.");
+        out.println("</body></html>");
+    }
+}
